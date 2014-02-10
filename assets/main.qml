@@ -110,6 +110,16 @@ NavigationPane {
                     overlapTouchPolicy: OverlapTouchPolicy.Allow
                     touchPropagationMode: TouchPropagationMode.PassThrough
                 }
+                onTouch: {
+                    if(event.isUp()){
+                        // this will add the behaviour where the view is switched to the content container, 
+                        // when user single tap on the contentCont while viewing the tab container.
+                        if(contentCont.translationX == 570){
+                            contentCont.translationX = 0;
+                            parentWrapper.onSwitchToContent();
+                        }
+                    }
+                }
             }
             //bring touch event here
             onTouch: {
@@ -190,7 +200,7 @@ NavigationPane {
                 tabListIconHolder.leftPadding = -95.0;
                 fadeContainer.opacity = 0.0;
             }
-        }
+        }// END parentWrapper
     }
 }
 
